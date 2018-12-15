@@ -1,7 +1,7 @@
 <template>
   <div class="discover">
     <h1>Cats</h1>
-    <h2>Browse our exclusive collection of the highest purrity cat pictures!</h2>
+    <h2>Browse our exclusive collection of the highest purrrrrity cat pictures!</h2>
 
     <b-modal ref="showModal" centered size="lg" hide-footer :title="show_modal_data.name">
       <div class="d-block text-center">
@@ -18,7 +18,7 @@
 
         <template slot="buy" slot-scope="data">
 
-          <b-btn variant="primary" v-if="data.item.bought===false" v-bind:to="'/buy'">Buy</b-btn>
+          <b-btn variant="primary" v-if="data.item.bought===false" v-bind:to="{ name: 'Buy', params: {id: data.item._id}}">Buy</b-btn>
           <b-btn variant="primary" v-if="data.item.bought===true" @click="showShowModal(data.index)">Show</b-btn>
 
         </template>
@@ -29,6 +29,7 @@
 
 <script>
   import CatsService from '@/services/CatsService'
+  import store from '@/store'
   import 'bootstrap/dist/css/bootstrap.css'
   import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -79,6 +80,8 @@
         this.cats[1]['bought'] = true
       },
       async showShowModal (idx) {
+        store.commit('increment')
+
         this.show_modal_data.name = this.cats[idx].name
         if (this.cats[idx].picture === undefined) {
           this.show_modal_data.image = undefined
@@ -86,7 +89,6 @@
 
           this.cats[idx].picture = response.data
           this.show_modal_data.image = this.cats[idx].picture
-          console.log(this.show_modal_data.image)
         }
 
         this.$refs.showModal.show()
