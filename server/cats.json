@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Programmers favorite",
+    "description": "Cat staring at a duck",
+    "price": 1000,
+    "filename": "1.jpg"
+  },
+  {
+    "name": "Pack of cats",
+    "description": "3 cats are looking at a hand. One more cat in the background",
+    "price": 500,
+    "filename": "2.jpg"
+  },
+  {
+    "name": "Fluffiness 3000",
+    "description": "Two cats sitting on the edge of a bed",
+    "price": 400,
+    "filename": "1.jpg"
+  }
+]

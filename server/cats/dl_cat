@@ -1,0 +1,1 @@
+curl https://api.thecatapi.com/v1/images/search | grep -oP '"url":\K.*(?=})' | xargs wget
