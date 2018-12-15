@@ -1,5 +1,5 @@
 <template>
-  <div class="discover">
+  <div class="discover" style="margin-top: 10%">
     <h1>Cats</h1>
     <h2>Browse our exclusive collection of the highest purrrrrity cat pictures!</h2>
 
@@ -29,7 +29,6 @@
 
 <script>
   import CatsService from '@/services/CatsService'
-  import store from '@/store'
   import 'bootstrap/dist/css/bootstrap.css'
   import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -80,8 +79,6 @@
         this.cats[1]['bought'] = true
       },
       async showShowModal (idx) {
-        store.commit('increment')
-
         this.show_modal_data.name = this.cats[idx].name
         if (this.cats[idx].picture === undefined) {
           this.show_modal_data.image = undefined

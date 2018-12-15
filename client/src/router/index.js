@@ -4,12 +4,25 @@ import Home from '@/components/Home'
 import Discover from '@/components/Discover'
 import Buy from '@/components/Buy'
 import Wallet from '@/components/Wallet'
+import Node from '@/components/Node'
 import store from '@/store'
 
 Vue.use(Router)
 
-const ifAuthenticated = (to, from, next) => {
-  if (store.authorized) {
+const ifFullyConfigured = (to, from, next) => {
+  if (store.state.authorized) {
+    if (store.state.local_node_configured) {
+      next()
+      return
+    }
+    next('/node')
+    return
+  }
+  next('/wallet')
+}
+
+const ifPartiallyConfigured = (to, from, next) => {
+  if (store.state.authorized) {
     next()
     return
   }
@@ -33,12 +46,18 @@ export default new Router({
       path: '/buy/:id',
       name: 'Buy',
       component: Buy,
-      beforeEnter: ifAuthenticated
+      beforeEnter: ifFullyConfigured
     },
     {
       path: '/wallet',
       name: 'Wallet',
       component: Wallet
+    },
+    {
+      path: '/node',
+      name: 'Node',
+      component: Node,
+      beforeEnter: ifPartiallyConfigured
     }
   ]
 })
