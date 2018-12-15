@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 var CatSchema = new Schema({
-    hash: String,
     name: String,
     description: String,
     price: Number,
-    filename: String
+    filename: String,
+    thumbnail: String
 });
 
 var Cat = mongoose.model("Cat", CatSchema);

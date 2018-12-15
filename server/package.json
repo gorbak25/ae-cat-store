@@ -15,9 +15,12 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "image-thumbnail": "^1.0.1",
+    "image-to-base64": "^2.0.1",
     "mongoose": "^5.4.0",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.9",
+    "request": "^2.88.0",
     "sha256-file": "^1.0.0"
   }
 }

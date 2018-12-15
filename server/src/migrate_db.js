@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const sha256File = require('sha256-file');
+const imageThumbnail = require('image-thumbnail');
 const mongoose = require('mongoose');
 const Cat = require("../models/cat");
 
@@ -57,8 +57,11 @@ async function migrate() {
 
     for(id in cats) {
         cat_definition = cats[id];
-        cat_hash = sha256File(appDir + "/../cats/" + cat_definition.filename);
-        cat_definition["hash"] = cat_hash;
+
+        const thumbnail_src = appDir + "/../cats/" + cat_definition.filename;
+        const thumbnail_options = { width: 64, height: 64, responseType: 'base64' };
+        const thumbnail = await imageThumbnail(thumbnail_src, thumbnail_options);
+        cat_definition["thumbnail"] = thumbnail;
         await add_cat(cat_definition);
     }
 
